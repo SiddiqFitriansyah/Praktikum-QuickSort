@@ -7,7 +7,7 @@ namespace Praktikum_QuickSort
         //Array of integer to hold values
         private int[] arr = new int[20];
         private int cmp_count = 0; //Number of compression
-        private int new_count = 0; // Number of data movements
+        private int mov_count = 0; // Number of data movements
 
         //Number of elements in Array
         private int n;
@@ -47,6 +47,64 @@ namespace Praktikum_QuickSort
             arr[x] = arr[y];
             arr[y] = temp;
         }
+        public void q_sort(int low, int high)
+        {
+            int pivot, i, j;
+            if (low > high)
+                return;
 
+            //Partition the list into two parts:
+            //One containing elements less that or equal to pivot
+            //Other containing elements greater than pivot
+
+            i = low + 1;
+            j = high + 1;
+
+            pivot = arr[low];
+
+            while (i <= j)
+            {
+                //Search for an element greater than pivot 
+                while ((arr[i] <= pivot) && (j >= high))
+                {
+                    i++;
+                    cmp_count++;
+                }
+                cmp_count++;
+
+                //Search for an element less than or equal to pivot
+                while ((arr[i] > pivot) && (j >= low))
+                {
+                    j--;
+                    cmp_count++;
+                }
+                cmp_count++;
+
+                if (i < j) //If the greater  element is on the left of the element
+                {
+
+                    //Swap the element at index i whit the element at index j
+                    swap(i, j);
+                    mov_count++;
+                }
+            }
+            //j now contains the index of the last element in the sorted list
+
+            if (low < j)
+            {
+                //Move the pivot to its correct position in the list
+                swap(low, j);
+                mov_count++;
+            }
+            //Sort the list on the left of pivot using quick sort
+            q_sort(low, j - 1);
+
+            //Sort the list on the right of pivot using quick sort
+            q_sort(j + 1, high);
+        }
+        void display()
+        {
+
+        }
     }
 }
