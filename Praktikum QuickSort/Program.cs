@@ -37,8 +37,16 @@ namespace Praktikum_QuickSort
                 arr[i] = Int32.Parse(s1);
             }
         }
-        
-        
+        //Swaps the element at index x with the element at index y
+
+        void swap(int x, int y)
+        {
+            int temp;
+
+            temp = arr[x];
+            arr[x] = arr[y];
+            arr[y] = temp;
+        }
 
     }
 }
