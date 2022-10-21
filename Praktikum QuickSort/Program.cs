@@ -116,5 +116,24 @@ namespace Praktikum_QuickSort
             Console.WriteLine("\nNumber of data movements: " + mov_count);
 
         }
+        int getSize()
+        {
+            return (n);
+        }
+        static void Main(string[]args)
+        {
+            //Declaring the object of the class
+            Program myList = new Program();
+            //Accept array elements
+            myList.input();
+            //Calling the sorting function
+            //First call to Quick Sort Algorithm
+            myList.q_sort(0, myList.getSize() - 1);
+            //Display Sorted Array
+            myList.display();
+            //To Exit from the console
+            Console.WriteLine("\n\nPress Enter To Exit");
+            Console.Read();
+        }
     }
 }
